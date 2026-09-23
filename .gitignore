@@ -1,0 +1,34 @@
+# Dependency directories
+node_modules/
+frontend/node_modules/
+venv/
+.venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+
+# Build outputs
+dist/
+build/
+frontend/dist/
+frontend/build/
+
+# Database & Storage
+*.sqlite
+*.sqlite3
+*.db
+farmdirect.db
+backend/farmdirect.db
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
