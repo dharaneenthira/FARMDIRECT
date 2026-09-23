@@ -7,6 +7,8 @@ import {
 import { useCart } from '../context/CartContext';
 import { useNotification } from '../context/NotificationContext';
 
+import { API_BASE_URL } from '../config';
+
 export const CheckoutPage = () => {
   const { cartItems, cartSubtotal, deliveryFee, cartTotal, clearCart } = useCart();
   const { addToast } = useNotification();
@@ -28,7 +30,7 @@ export const CheckoutPage = () => {
       quantity: item.quantity
     }));
 
-    fetch('http://localhost:8000/api/orders', {
+    fetch(`${API_BASE_URL}/api/orders`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

@@ -7,6 +7,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { RatingStars } from '../components/RatingStars';
 import { useNotification } from '../context/NotificationContext';
 
+import { API_BASE_URL } from '../config';
+
 export const SmartBuyerMatching = () => {
   const navigate = useNavigate();
   const { addToast } = useNotification();
@@ -79,7 +81,7 @@ export const SmartBuyerMatching = () => {
     e.preventDefault();
     addToast('Executing Smart Buyer Matrix algorithm...', 'info');
 
-    fetch('http://localhost:8000/api/ai/buyer-matching', {
+    fetch(`${API_BASE_URL}/api/ai/buyer-matching`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ crop_name: cropName, quantity: Number(quantity), expected_price: Number(expectedPrice), location })

@@ -96,6 +96,8 @@ const MOCK_PRODUCTS = [
   }
 ];
 
+import { API_BASE_URL } from '../config';
+
 export const Marketplace = () => {
   const [searchParams] = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
@@ -113,7 +115,7 @@ export const Marketplace = () => {
 
   // Try fetching backend API if running
   useEffect(() => {
-    fetch('http://localhost:8000/api/products')
+    fetch(`${API_BASE_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {

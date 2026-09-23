@@ -8,6 +8,8 @@ import {
 } from 'recharts';
 import { useNotification } from '../context/NotificationContext';
 
+import { API_BASE_URL } from '../config';
+
 export const AiPricePrediction = () => {
   const { addToast } = useNotification();
 
@@ -52,7 +54,7 @@ export const AiPricePrediction = () => {
     e.preventDefault();
     setLoading(true);
 
-    fetch('http://localhost:8000/api/ai/price-prediction', {
+    fetch(`${API_BASE_URL}/api/ai/price-prediction`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ crop, location, quantity: Number(quantity), season })

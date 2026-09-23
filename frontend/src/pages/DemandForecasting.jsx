@@ -7,6 +7,8 @@ import {
 } from 'recharts';
 import { useNotification } from '../context/NotificationContext';
 
+import { API_BASE_URL } from '../config';
+
 export const DemandForecasting = () => {
   const { addToast } = useNotification();
 
@@ -42,7 +44,7 @@ export const DemandForecasting = () => {
     e.preventDefault();
     setLoading(true);
 
-    fetch('http://localhost:8000/api/ai/demand-forecast', {
+    fetch(`${API_BASE_URL}/api/ai/demand-forecast`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ crop, location, time_period: timePeriod })

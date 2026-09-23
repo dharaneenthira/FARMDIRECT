@@ -4,6 +4,8 @@ import { Sprout, Upload, Save, CheckCircle, TrendingUp, AlertCircle } from 'luci
 import { useNavigate, Link } from 'react-router-dom';
 import { useNotification } from '../context/NotificationContext';
 
+import { API_BASE_URL } from '../config';
+
 export const AddProduct = () => {
   const navigate = useNavigate();
   const { addToast } = useNotification();
@@ -40,7 +42,7 @@ export const AddProduct = () => {
     setError('');
 
     // Call backend API or local mock
-    fetch('http://localhost:8000/api/products', {
+    fetch(`${API_BASE_URL}/api/products`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...formData, status })

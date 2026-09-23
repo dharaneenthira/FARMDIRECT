@@ -9,6 +9,8 @@ import { useCart } from '../context/CartContext';
 import { useNotification } from '../context/NotificationContext';
 import { useLanguage } from '../context/LanguageContext';
 
+import { API_BASE_URL } from '../config';
+
 export const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -40,7 +42,7 @@ export const ProductDetails = () => {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/products/${id}`)
+    fetch(`${API_BASE_URL}/api/products/${id}`)
       .then(res => res.json())
       .then(data => {
         if (data && data.name) setProduct(data);
