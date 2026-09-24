@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sprout, ShieldCheck, Truck, TrendingUp, Heart } from 'lucide-react';
+import { Sprout, ShieldCheck, Truck, TrendingUp, Heart, Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Footer = () => {
@@ -11,57 +11,57 @@ export const Footer = () => {
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-600/30">
                 <Sprout className="w-5 h-5 text-white" />
               </div>
               <span className="text-2xl font-black text-white tracking-tight">FARMDIRECT</span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-              AI-Powered Direct Farmer-to-Buyer Platform solving SIH26033. Bypassing middleman commissions to maximize earnings for Indian farmers and offer fair pricing to buyers.
+              Connecting farms directly with buyers. Transparent pricing, verified farmers, and fresh agricultural produce straight to your doorstep.
             </p>
-            <div className="flex items-center gap-3 pt-2 text-xs font-semibold text-emerald-400">
-              <div className="flex items-center gap-1 bg-emerald-950/80 px-3 py-1.5 rounded-full border border-emerald-800/80">
-                <ShieldCheck className="w-4 h-4" /> 100% Direct Trade
+            <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-semibold text-emerald-400">
+              <div className="flex items-center gap-1.5 bg-emerald-950/80 px-3 py-1.5 rounded-full border border-emerald-800/80">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" /> 100% Verified Farmers
               </div>
-              <div className="flex items-center gap-1 bg-emerald-950/80 px-3 py-1.5 rounded-full border border-emerald-800/80">
-                <TrendingUp className="w-4 h-4" /> AI Pricing
+              <div className="flex items-center gap-1.5 bg-emerald-950/80 px-3 py-1.5 rounded-full border border-emerald-800/80">
+                <Truck className="w-4 h-4 text-emerald-400" /> Direct Delivery
               </div>
             </div>
           </div>
 
-          {/* Platform Links */}
+          {/* Quick Links */}
           <div>
-            <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-4">Core Platform</h4>
+            <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">Marketplace</h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
-              <li><Link to="/marketplace" className="hover:text-emerald-400 transition">Marketplace</Link></li>
-              <li><Link to="/ai-price-prediction" className="hover:text-emerald-400 transition">AI Price Prediction</Link></li>
-              <li><Link to="/demand-forecast" className="hover:text-emerald-400 transition">Demand Forecasting</Link></li>
-              <li><Link to="/smart-buyer-matching" className="hover:text-emerald-400 transition">Smart Buyer Matching</Link></li>
-              <li><Link to="/delivery-tracking/1" className="hover:text-emerald-400 transition">Delivery Logistics</Link></li>
+              <li><Link to="/marketplace" className="hover:text-emerald-400 transition">All Products</Link></li>
+              <li><Link to="/marketplace?category=Vegetables" className="hover:text-emerald-400 transition">Fresh Vegetables</Link></li>
+              <li><Link to="/marketplace?category=Fruits" className="hover:text-emerald-400 transition">Farm Fruits</Link></li>
+              <li><Link to="/marketplace?category=Grains" className="hover:text-emerald-400 transition">Grains & Pulses</Link></li>
+              <li><Link to="/marketplace?category=Organic" className="hover:text-emerald-400 transition">Organic Produce</Link></li>
             </ul>
           </div>
 
-          {/* For Farmers & Buyers */}
+          {/* Smart Tools & Services */}
           <div>
-            <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-4">Dashboards</h4>
+            <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">Farmer Tools</h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
-              <li><Link to="/farmer-dashboard" className="hover:text-emerald-400 transition">Farmer Portal</Link></li>
-              <li><Link to="/farmer-profile" className="hover:text-emerald-400 transition">Farm Profile Edit</Link></li>
-              <li><Link to="/add-product" className="hover:text-emerald-400 transition">Publish New Crop</Link></li>
-              <li><Link to="/buyer-dashboard" className="hover:text-emerald-400 transition">Buyer Portal</Link></li>
-              <li><Link to="/admin-dashboard" className="hover:text-emerald-400 transition">Admin Console</Link></li>
+              <li><Link to="/add-product" className="hover:text-emerald-400 transition">Sell Products</Link></li>
+              <li><Link to="/ai-price-prediction" className="hover:text-emerald-400 transition">Price Predictor</Link></li>
+              <li><Link to="/demand-forecast" className="hover:text-emerald-400 transition">Demand Forecast</Link></li>
+              <li><Link to="/smart-buyer-matching" className="hover:text-emerald-400 transition">Buyer Matching</Link></li>
+              <li><Link to="/farmer-dashboard" className="hover:text-emerald-400 transition">Farmer Dashboard</Link></li>
             </ul>
           </div>
 
-          {/* Regional Hubs */}
+          {/* Company & Support */}
           <div>
-            <h4 className="text-white text-sm font-bold uppercase tracking-wider mb-4">Agricultural Hubs</h4>
+            <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">Company & Support</h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
-              <li>Madurai Organic Belt</li>
-              <li>Thanjavur Delta Paddy</li>
-              <li>Salem Mango Orchards</li>
-              <li>Coimbatore Agro Wholesale</li>
-              <li>Pollachi Coconut Groves</li>
+              <li><Link to="/" className="hover:text-emerald-400 transition">About Us</Link></li>
+              <li><Link to="/chat" className="hover:text-emerald-400 transition">Contact & Help</Link></li>
+              <li><Link to="/notifications" className="hover:text-emerald-400 transition">Notifications</Link></li>
+              <li><Link to="/" className="hover:text-emerald-400 transition">Privacy Policy</Link></li>
+              <li><Link to="/" className="hover:text-emerald-400 transition">Terms of Service</Link></li>
             </ul>
           </div>
 
@@ -69,14 +69,15 @@ export const Footer = () => {
 
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
-          <p>© 2026 FarmDirect AI Platform. Developed for Smart India Hackathon (SIH26033).</p>
-          <div className="flex items-center gap-1 text-slate-400">
-            <span>Built for Indian Agriculture</span>
+          <p>© 2026 FarmDirect Agriculture Technologies. All rights reserved.</p>
+          <div className="flex items-center gap-1.5 text-slate-400">
+            <span>Built for Sustainable Agriculture</span>
             <Heart className="w-3.5 h-3.5 text-emerald-500 fill-emerald-500 inline mx-1" />
-            <span>Farmgate to Buyer</span>
+            <span>Farm to Table</span>
           </div>
         </div>
       </div>
     </footer>
   );
 };
+

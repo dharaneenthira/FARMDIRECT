@@ -91,7 +91,7 @@ export const AiPricePrediction = () => {
           <div className="space-y-2 z-10">
             <div className="inline-flex items-center gap-2 bg-emerald-900 border border-emerald-700 px-3 py-1 rounded-full text-xs font-bold text-emerald-300">
               <Cpu className="w-4 h-4 text-emerald-400" />
-              <span>SIH26033 AI Intelligence Engine</span>
+              <span>AI Intelligence Engine</span>
             </div>
             <h1 className="text-3xl font-black">AI-Powered Price Prediction</h1>
             <p className="text-emerald-200 text-sm max-w-2xl">

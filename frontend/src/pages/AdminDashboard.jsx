@@ -56,7 +56,7 @@ export const AdminDashboard = () => {
                 System Admin ⚡
               </span>
             </div>
-            <p className="text-xs text-slate-400 mt-1">SIH26033 Platform Governance & Intermediary Elimination Monitoring</p>
+            <p className="text-xs text-slate-400 mt-1">Platform Governance & Direct Trade Monitoring</p>
           </div>
 
           <Link

@@ -68,7 +68,7 @@ export const FarmerProfile = () => {
               <h2 className="text-xl font-bold text-slate-900">{formData.farmerName}</h2>
               <p className="text-xs text-emerald-700 font-semibold mt-0.5">{formData.farmName}</p>
               <div className="mt-2 inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full border border-emerald-300">
-                <CheckCircle className="w-3.5 h-3.5 text-emerald-600" /> SIH Verified Farmer
+                <CheckCircle className="w-3.5 h-3.5 text-emerald-600" /> Verified Farmer
               </div>
             </div>
 
