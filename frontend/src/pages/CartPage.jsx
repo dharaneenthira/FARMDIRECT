@@ -2,9 +2,13 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Trash2, ArrowRight, ArrowLeft, ShieldCheck, Sprout } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
+import { useNotification } from '../context/NotificationContext';
 
 export const CartPage = () => {
   const { cartItems, removeFromCart, updateQuantity, cartSubtotal, deliveryFee, cartTotal, clearCart } = useCart();
+  const { user } = useAuth();
+  const { addToast } = useNotification();
   const navigate = useNavigate();
 
   return (
@@ -124,7 +128,14 @@ export const CartPage = () => {
               </div>
 
               <button
-                onClick={() => navigate('/checkout')}
+                onClick={() => {
+                  if (!user) {
+                    addToast('Please log in to continue.', 'error');
+                    navigate('/login', { state: { from: { pathname: '/checkout' } } });
+                    return;
+                  }
+                  navigate('/checkout');
+                }}
                 className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl shadow-lg transition text-sm flex items-center justify-center gap-2"
               >
                 Proceed to Checkout <ArrowRight className="w-4 h-4" />

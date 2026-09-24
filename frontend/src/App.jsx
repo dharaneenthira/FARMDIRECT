@@ -7,6 +7,7 @@ import { NotificationProvider } from './context/NotificationContext';
 
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { ProtectedRoute } from './components/ProtectedRoute';
 
 import { LandingPage } from './pages/LandingPage';
 import { Marketplace } from './pages/Marketplace';
@@ -42,35 +43,120 @@ export function App() {
                 <Navbar />
                 <div className="flex-1">
                   <Routes>
+                    {/* Public Routes */}
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/marketplace" element={<Marketplace />} />
                     <Route path="/product/:id" element={<ProductDetails />} />
                     <Route path="/ai-price-prediction" element={<AiPricePrediction />} />
                     <Route path="/demand-forecast" element={<DemandForecasting />} />
                     <Route path="/smart-buyer-matching" element={<SmartBuyerMatching />} />
-                    
-                    {/* Farmer Views */}
-                    <Route path="/farmer-dashboard" element={<FarmerDashboard />} />
-                    <Route path="/farmer-profile" element={<FarmerProfile />} />
-                    <Route path="/add-product" element={<AddProduct />} />
-                    
-                    {/* Buyer Views */}
-                    <Route path="/buyer-dashboard" element={<BuyerDashboard />} />
                     <Route path="/cart" element={<CartPage />} />
-                    <Route path="/checkout" element={<CheckoutPage />} />
-                    <Route path="/wishlist" element={<WishlistPage />} />
                     
-                    {/* Shared Orders & Tracking */}
-                    <Route path="/orders" element={<OrderManagement />} />
-                    <Route path="/delivery-tracking/:id" element={<DeliveryTrackingPage />} />
-                    <Route path="/chat" element={<ChatPage />} />
-                    <Route path="/notifications" element={<NotificationsPage />} />
+                    {/* Protected Farmer Views */}
+                    <Route 
+                      path="/farmer-dashboard" 
+                      element={
+                        <ProtectedRoute allowedRoles={['farmer']}>
+                          <FarmerDashboard />
+                        </ProtectedRoute>
+                      } 
+                    />
+                    <Route 
+                      path="/farmer-profile" 
+                      element={
+                        <ProtectedRoute allowedRoles={['farmer']}>
+                          <FarmerProfile />
+                        </ProtectedRoute>
+                      } 
+                    />
+                    <Route 
+                      path="/add-product" 
+                      element={
+                        <ProtectedRoute allowedRoles={['farmer']}>
+                          <AddProduct />
+                        </ProtectedRoute>
+                      } 
+                    />
                     
-                    {/* Admin Views */}
-                    <Route path="/admin-dashboard" element={<AdminDashboard />} />
-                    <Route path="/analytics" element={<AnalyticsPage />} />
+                    {/* Protected Buyer Views */}
+                    <Route 
+                      path="/buyer-dashboard" 
+                      element={
+                        <ProtectedRoute allowedRoles={['buyer']}>
+                          <BuyerDashboard />
+                        </ProtectedRoute>
+                      } 
+                    />
+                    <Route 
+                      path="/checkout" 
+                      element={
+                        <ProtectedRoute>
+                          <CheckoutPage />
+                        </ProtectedRoute>
+                      } 
+                    />
+                    <Route 
+                      path="/wishlist" 
+                      element={
+                        <ProtectedRoute>
+                          <WishlistPage />
+                        </ProtectedRoute>
+                      } 
+                    />
                     
-                    {/* Auth */}
+                    {/* Shared Orders & Tracking (Protected) */}
+                    <Route 
+                      path="/orders" 
+                      element={
+                        <ProtectedRoute>
+                          <OrderManagement />
+                        </ProtectedRoute>
+                      } 
+                    />
+                    <Route 
+                      path="/delivery-tracking/:id" 
+                      element={
+                        <ProtectedRoute>
+                          <DeliveryTrackingPage />
+                        </ProtectedRoute>
+                      } 
+                    />
+                    <Route 
+                      path="/chat" 
+                      element={
+                        <ProtectedRoute>
+                          <ChatPage />
+                        </ProtectedRoute>
+                      } 
+                    />
+                    <Route 
+                      path="/notifications" 
+                      element={
+                        <ProtectedRoute>
+                          <NotificationsPage />
+                        </ProtectedRoute>
+                      } 
+                    />
+                    
+                    {/* Protected Admin Views */}
+                    <Route 
+                      path="/admin-dashboard" 
+                      element={
+                        <ProtectedRoute allowedRoles={['admin']}>
+                          <AdminDashboard />
+                        </ProtectedRoute>
+                      } 
+                    />
+                    <Route 
+                      path="/analytics" 
+                      element={
+                        <ProtectedRoute allowedRoles={['admin']}>
+                          <AnalyticsPage />
+                        </ProtectedRoute>
+                      } 
+                    />
+                    
+                    {/* Auth Routes */}
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} />

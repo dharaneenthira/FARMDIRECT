@@ -2,10 +2,10 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
-const DEMO_USERS = {
+export const DEMO_USER_PROFILES = {
   farmer: {
     id: 1,
-    name: "Murugan (Organic Farmer)",
+    name: "Murugan Agricultural Farm",
     email: "farmer@farmdirect.com",
     role: "farmer",
     location: "Madurai, Tamil Nadu",
@@ -27,7 +27,7 @@ const DEMO_USERS = {
   },
   admin: {
     id: 3,
-    name: "FarmDirect Admin",
+    name: "FarmDirect System Admin",
     email: "admin@farmdirect.com",
     role: "admin",
     location: "Chennai Headquarters",
@@ -36,23 +36,50 @@ const DEMO_USERS = {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(DEMO_USERS.farmer);
-  const [token, setToken] = useState("demo-jwt-token-sih2026");
-
-  const switchRole = (role) => {
-    if (DEMO_USERS[role]) {
-      setUser(DEMO_USERS[role]);
+  // Initialize state from localStorage (or null for guests)
+  const [user, setUser] = useState(() => {
+    try {
+      const savedUser = localStorage.getItem('farmdirect_user');
+      return savedUser ? JSON.parse(savedUser) : null;
+    } catch {
+      return null;
     }
-  };
+  });
 
-  const login = (userData, tokenStr) => {
+  const [token, setToken] = useState(() => {
+    try {
+      return localStorage.getItem('farmdirect_token') || null;
+    } catch {
+      return null;
+    }
+  });
+
+  const login = (userData, tokenStr = 'jwt-token-farmdirect-session') => {
     setUser(userData);
     setToken(tokenStr);
+    try {
+      localStorage.setItem('farmdirect_user', JSON.stringify(userData));
+      localStorage.setItem('farmdirect_token', tokenStr);
+    } catch (e) {
+      console.error("Failed to save auth session to localStorage", e);
+    }
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
+    try {
+      localStorage.removeItem('farmdirect_user');
+      localStorage.removeItem('farmdirect_token');
+    } catch (e) {
+      console.error("Failed to clear auth session from localStorage", e);
+    }
+  };
+
+  const switchRole = (role) => {
+    if (DEMO_USER_PROFILES[role]) {
+      login(DEMO_USER_PROFILES[role]);
+    }
   };
 
   return (

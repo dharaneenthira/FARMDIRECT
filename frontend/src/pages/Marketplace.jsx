@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { 
   Search, Filter, MapPin, Award, ShoppingCart, Eye, 
   ArrowUpDown, Check, ShieldCheck, Sprout
@@ -8,6 +8,7 @@ import { RatingStars } from '../components/RatingStars';
 import { useCart } from '../context/CartContext';
 import { useNotification } from '../context/NotificationContext';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 
 const MOCK_PRODUCTS = [
   {
@@ -100,6 +101,7 @@ import { API_BASE_URL } from '../config';
 
 export const Marketplace = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const initialSearch = searchParams.get('search') || '';
 
   const [products, setProducts] = useState(MOCK_PRODUCTS);
@@ -112,6 +114,7 @@ export const Marketplace = () => {
   const { addToCart } = useCart();
   const { addToast } = useNotification();
   const { t } = useLanguage();
+  const { user } = useAuth();
 
   // Try fetching backend API if running
   useEffect(() => {
@@ -330,6 +333,11 @@ export const Marketplace = () => {
                     </Link>
                     <button
                       onClick={() => {
+                        if (!user) {
+                          addToast('Please log in to continue.', 'error');
+                          navigate('/login');
+                          return;
+                        }
                         addToCart(p, 10);
                         addToast(`Added 10 ${p.unit} of ${p.name} to Cart!`, 'success');
                       }}

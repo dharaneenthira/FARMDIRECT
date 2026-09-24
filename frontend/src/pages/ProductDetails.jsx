@@ -8,6 +8,7 @@ import { RatingStars } from '../components/RatingStars';
 import { useCart } from '../context/CartContext';
 import { useNotification } from '../context/NotificationContext';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 
 import { API_BASE_URL } from '../config';
 
@@ -17,6 +18,7 @@ export const ProductDetails = () => {
   const { addToCart } = useCart();
   const { addToast } = useNotification();
   const { t } = useLanguage();
+  const { user } = useAuth();
 
   const [quantity, setQuantity] = useState(25);
   const [product, setProduct] = useState({
@@ -151,6 +153,11 @@ export const ProductDetails = () => {
               <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={() => {
+                    if (!user) {
+                      addToast('Please log in to continue.', 'error');
+                      navigate('/login');
+                      return;
+                    }
                     addToCart(product, quantity);
                     addToast(`Added ${quantity} ${product.unit} to Cart!`, 'success');
                   }}
@@ -159,19 +166,33 @@ export const ProductDetails = () => {
                   <ShoppingCart className="w-4 h-4" /> {t('addToCart')}
                 </button>
                 <button
-                  onClick={handleBuyNow}
+                  onClick={() => {
+                    if (!user) {
+                      addToast('Please log in to continue.', 'error');
+                      navigate('/login');
+                      return;
+                    }
+                    handleBuyNow();
+                  }}
                   className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg transition"
                 >
                   ⚡ {t('buyNow')}
                 </button>
               </div>
 
-              <Link
-                to={`/chat?product=${product.id}`}
+              <button
+                onClick={() => {
+                  if (!user) {
+                    addToast('Please log in to continue.', 'error');
+                    navigate('/login');
+                    return;
+                  }
+                  navigate(`/chat?product=${product.id}`);
+                }}
                 className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 transition"
               >
                 <MessageSquare className="w-4 h-4 text-emerald-600" /> Contact Farmer Directly
-              </Link>
+              </button>
             </div>
 
           </div>

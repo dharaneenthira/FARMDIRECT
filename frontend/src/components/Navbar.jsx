@@ -199,7 +199,7 @@ export const Navbar = () => {
 
                     <div className="pt-1 border-t border-slate-800">
                       <button
-                        onClick={() => { logout(); setProfileDropdownOpen(false); }}
+                        onClick={() => { logout(); setProfileDropdownOpen(false); navigate('/'); }}
                         className="w-full text-left px-3 py-2 hover:bg-red-950 text-red-400 transition"
                       >
                         Sign Out
